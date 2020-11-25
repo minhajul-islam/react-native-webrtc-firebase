@@ -3,33 +3,12 @@
 
 Minimal react native web-etc example with Firebase
 
-## Steps to run
+## web-rtc
 
-1. Clone the reposiotry `git clone https://github.com/DipanshKhandelwal/react-native-webrtc-firebase.git`
+1.STUN is used to answer the question “what is my public IP address?”” and then share the answer with the other user in the session, so he can try and use that address to send media directly.
 
-2. Create a new firebase project `https://console.firebase.google.com/`
+2.TRUN is used to relay the media through it (so it costs more in bandwidth costs), and is used when you can’t really reach the other user directly.
 
-3. Add new apps in the firebase console
+A few quick thoughts here:
 
-4. Add firebase config to the apps.
-
-    - For `Android`:
-        - Download the `google-services.json` and add it to this path `android/app/`
-
-    - For `ios`:
-        - Download the `GoogleService-Info.plist` and add it to your ios project using `xcode`
-
-5. In the `firebase console` remember to create a new `Firestore` database and keep it's rules to test mode.
-
-6. Go to the project folder, and run the following command.
-
-    - `yarn install`
-
-7. Build the app:
-
-    - For `Android`
-        - `yarn run android`
-
-    - For `ios`
-        - `yarn run cocoapods`
-        - `yarn run ios`
+You need both STUN and TURN to make WebRTC work. You can skip STUN if the other end is a media server. You will need TURN even if your other end of the session is a media server on a public IP address Don’t use free STUN servers in your production environment. And don’t never ever use “free” TURN servers If you deploy your own servers, you will need to place the TURN servers as close as possible to your users, which means handling TURN geolocation TURN servers don’t have access to the media. Ever. They don’t pose a privacy issue if they are configured properly, and they can’t be used by you or anyone else to record the conversations Prefer using paid managed TURN servers instead of hosting your own if you can Make sure you configure NAT traversal sensibly. Here’s a free 3-part video course on effectively connecting WebRTC sessions
