@@ -1,4 +1,5 @@
 # react native web-rtc firebase
+# Workable calling app in local network need to set global(turn/sturn server)[MINHAJ]
 
 Minimal react native web-etc example with Firebase
 
